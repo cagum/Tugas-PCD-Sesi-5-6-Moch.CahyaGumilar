@@ -7,29 +7,24 @@ image = img.imread(path)
 
 height, width = image.shape[:2]
 
-horizontal = np.zeros_like(image)
-vertical = np.zeros_like(image)
+# Buat array kosong untuk menyimpan gambar yang sudah dimirror
+mirrored = np.zeros_like(image)
 
+# Melakukan mirroring horizontal dan vertikal dalam satu loop
 for y in range(height):
     for x in range(width):
-        horizontal[y, x] = image[y, width - 1 - x]
-
-for y in range(height):
-    for x in range(width):
-        vertical[y, x] = image[height - 1 - y, x]
+        mirrored[y, x] = image[height - 1 - y, width - 1 - x]
 
 plt.figure(figsize=(10, 5))
 
+# Menampilkan gambar asli, gambar hasil mirroring horizontal, dan gambar hasil mirroring vertikal
 plt.subplot(1, 3, 1)
 plt.imshow(image)
 plt.axis('off')
 
+# Menampilkan gambar yang sudah dimirror
 plt.subplot(1, 3, 2)
-plt.imshow(horizontal)
-plt.axis('off')
-
-plt.subplot(1, 3, 3)
-plt.imshow(vertical)
+plt.imshow(mirrored)
 plt.axis('off')
 
 plt.show()
